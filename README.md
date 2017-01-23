@@ -24,7 +24,7 @@ The App: As a user...
 - [ ] Create the back end using node and express.
 - [ ] Create a database of to do list items.
 - [ ] Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
+- [X] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
 
 #### Stretch Goals/Nice to Have's:
 - [ ] I can create mulitple lists of to do's.
