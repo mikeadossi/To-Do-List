@@ -12,12 +12,12 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
-    resolve: {
+    resolve: { // webpack looks for the files to bundle together
         modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
     },
     module: {
-        loaders: [
+        loaders: [ // load the modules we'll be using: jsx, node_mod, react-hot ...
         {
             test: /\.jsx?$/,
             exclude: /node_modules/,
@@ -25,7 +25,7 @@ module.exports = {
         }
         ]
     },
-    plugins: [
+    plugins: [ // add plugins independent of webpack
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ]
