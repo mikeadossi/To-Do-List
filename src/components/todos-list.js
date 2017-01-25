@@ -5,10 +5,14 @@ import TodosListItem from './todos-list-item';
 
 export default class TodosList extends React.Component{
   renderItems() {
+
+    const props = _.omit(this.props, 'todos');
+
     return _.map(
       this.props.todos,
-      (todos, index) => <TodosListItem key= {index} {...todos} /> // Our spread operator here helps us access: task={todo.task} isCompleted={todo.isCompleted}
+      (todos, index) => <TodosListItem key= {index} {...todos} {...props} /> 
     );
+
   }
 
   render(){
@@ -16,7 +20,6 @@ export default class TodosList extends React.Component{
     return(
       <table>
           <TodosListHeader />
-          
           <tbody>
             {this.renderItems()}
           </tbody>
