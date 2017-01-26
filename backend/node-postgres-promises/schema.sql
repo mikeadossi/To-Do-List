@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS terrific_thrasher;
-CREATE DATABASE terrific_thrasher;
+DROP DATABASE IF EXISTS terrific_thrasher2;
+CREATE DATABASE terrific_thrasher2;
 
-\c terrific_thrasher
+\c terrific_thrasher2
 
 CREATE TABLE task_list(
   id SERIAL PRIMARY KEY,
