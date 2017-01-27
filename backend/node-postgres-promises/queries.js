@@ -6,7 +6,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/terrific_thrasher2';
+var connectionString = 'postgres://${process.env.USER}@localhost:5432/terrific_thrasher2';
 var db = pgp(connectionString);
 
 // add query functions
@@ -43,11 +43,13 @@ function getSingleTask(req, res, next) {
 }
 
 function createTask(req, res, next) {
-  req.body.priority = parseInt(req.body.priority);
-  db.none('insert into task_list(task, details, is_complete, priority)' +
-      'values(${task}, ${details}, ${is_complete}, ${priority})',
+  console.log(req.body)
+  var task = req.body.task
+  var is_complete = req.body.isCompleted
+  db.none('insert into task_list(task, is_complete)' + ' values(${task}, ${isCompleted})',
     req.body)
     .then(function () {
+      console.log('???')
       res.status(200)
         .json({
           status: 'success',
@@ -55,7 +57,8 @@ function createTask(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      console.log('second log')
+      res.send(err)
     });
 }
 
