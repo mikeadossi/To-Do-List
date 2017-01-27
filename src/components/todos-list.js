@@ -5,24 +5,35 @@ import TodosListItem from './todos-list-item';
 
 export default class TodosList extends React.Component{
   renderItems() {
+    //
+    // const props = _.omit(this.props, 'todos');
+    //
+    // return _.map(
+    //   this.props.todos,
+    //   (todos, index) => <TodosListItem key= {index} {...todos} {...props} />
+    // );
+    //
+    //
+    const { toggleTask, deleteTask, saveTask } = this.props
 
-    const props = _.omit(this.props, 'todos');
-
-    return _.map(
-      this.props.todos,
-      (todos, index) => <TodosListItem key= {index} {...todos} {...props} /> 
-    );
-
+    return this.props.todos.map( (todo, index) =>
+      <TodosListItem
+        {...todo}
+        toggleTask={toggleTask}
+        deleteTask={deleteTask}
+        saveTask={saveTask}
+        key={`todo-${index}`} />
+    )
   }
 
-  render(){
+  render() {
 
     return(
       <table>
-          <TodosListHeader />
-          <tbody>
-            {this.renderItems()}
-          </tbody>
+        <TodosListHeader />
+        <tbody>
+          {this.renderItems()}
+        </tbody>
       </table>
     );
   }

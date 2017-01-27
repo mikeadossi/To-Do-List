@@ -5,11 +5,35 @@ var options = {
   promiseLib: promise
 };
 
+// var pg = require('pg');
+// var PORT = 3000;
+// var pool = new pg.pool(
+//   port: 5432,
+//   password: 'opensesame',
+//   database: 'terrific_thrasher2',
+//   max: 10,
+//   host: 'localhost',
+//   user: 'postgres'
+// );
+//
+// pool.connect((err, db, done) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     db.query('SELECT * from task_list', function (err, table) {
+//       if(err) {
+//         return console.log(err)
+//       } else {
+//         console.llog(table)
+//       }
+//     })
+//   }
+// })
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://${process.env.USER}@localhost:5432/terrific_thrasher2';
+var connectionString = `postgres://${process.env.USER}@localhost:5432/terrific_thrasher2`;
 var db = pgp(connectionString);
 
-// add query functions
+//add query functions
 
 function getAllTasks(req, res, next) {
   db.any('select * from task_list')
@@ -46,7 +70,7 @@ function createTask(req, res, next) {
   console.log(req.body)
   var task = req.body.task
   var is_complete = req.body.isCompleted
-  db.none('insert into task_list(task, is_complete)' + ' values(${task}, ${isCompleted})',
+  db.any('insert into task_list(task, is_complete)' + ' values(${task}, ${isCompleted})',
     req.body)
     .then(function () {
       console.log('???')
