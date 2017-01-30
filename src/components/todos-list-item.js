@@ -1,23 +1,19 @@
-import React from 'react';
+import React from 'react'
 
 export default class TodosListItem extends React.Component{
-
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {
-        isEditing: false
-    }
+    this.state = { isEditing: false }
   }
 
   renderTaskSection() {
-    const { task, isCompleted } = this.props;
+    const { task, isCompleted } = this.props
 
     const taskStyle = {
       color: isCompleted ? 'green' : 'red',
       cursor: 'pointer'
-
-    };
+    }
 
     if(this.state.isEditing) {
       return (
@@ -41,7 +37,7 @@ export default class TodosListItem extends React.Component{
           <button onClick={this.onSaveClick.bind(this)}>Save</button>
           <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
         </td>
-      );
+      )
     }
 
     return(
@@ -58,14 +54,14 @@ export default class TodosListItem extends React.Component{
             {this.renderTaskSection()}
             {this.renderActionSection()}
         </tr>
-    );
+    )
   }
 
   onEditClick() {
-    this.setState({ isEditing: true });
+    this.setState({ isEditing: true })
   }
   onCancelClick() {
-    this.setState({ isEditing: false });
+    this.setState({ isEditing: false })
   }
   onSaveClick(event) {
     event.preventDefault()

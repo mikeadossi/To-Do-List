@@ -16,13 +16,13 @@ Goals
 ## User Stories:
 
 The App: As a user...
-- [ ] I can create to do list items.
-- [ ] I can delete unwanted to do list items.
-- [ ] I can check items off as completed.
-- [ ] I can edit the text on existing to do's.
+- [x] I can create to do list items.
+- [x] I can delete unwanted to do list items.
+- [x] I can check items off as completed.
+- [x] I can edit the text on existing to do's.
 - [ ] Create the back end using node and express.
 - [ ] Create a database of to do list items.
-- [ ] Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
+- [x] Follow good Git team behaviors (do all your work on branches & submit pull requests for review before merging to master)
 - [x] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
 
 #### Stretch Goals/Nice to Have's:
