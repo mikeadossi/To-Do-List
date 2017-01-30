@@ -73,7 +73,6 @@ function createTask(req, res, next) {
   db.any('insert into task_list(task, is_complete)' + ' values(${task}, ${isCompleted})',
     req.body)
     .then(function () {
-      console.log('???')
       res.status(200)
         .json({
           status: 'success',
@@ -103,20 +102,14 @@ function updateTask(req, res, next) {
 }
 
 function removeTask(req, res, next) {
-  var taskID = parseInt(req.params.id);
-  db.result('delete from task_list where id = $1', taskID)
-    .then(function (result) {
-      /* jshint ignore:start */
-      res.status(200)
-        .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} task`
-        });
-      /* jshint ignore:end */
-    })
-    .catch(function (err) {
-      return next(err);
-    });
+  var id = req.params;
+  db.none( `
+        BEGIN TRANSACTION;
+        DELETE FROM task_lists WHERE id = ${id};
+        COMMIT;
+        ` )
+      .then( response.status( 200 ).json({ status: 'success', message: 'SUCCESSFULLY DELETED' }) )
+      .catch( error => next( error ))
 }
 
 module.exports = {

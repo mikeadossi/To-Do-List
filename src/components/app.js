@@ -45,7 +45,7 @@ export default class App extends React.Component{
     todos = [...todos, currentTodo]
     // this.state.todos.push( currentTodo )
 
-    this.setState({ todos: this.state.todos })
+    this.setState({ todos: todos })
 
     var request = new Request('http://localhost:3000/api/terrific_thrasher2', {
       method: 'POST',
@@ -56,12 +56,7 @@ export default class App extends React.Component{
     // xmlhttprequest()
 
     fetch(request)
-      .then(function(res){
-        res.json()
-          .then(function(currentTodo){
-            console.log(currentTodo)
-          })
-      })
+      // .then(res => res.json())
   }
 
   saveTask(oldTask, newTask) {
@@ -70,19 +65,33 @@ export default class App extends React.Component{
     this.setState({ todos: this.state.todos })
   }
 
-  deleteTask(taskToDelete) {
+  deleteTask(id) {
+    console.log(id)
     let { todos } = this.state
-    const copy = [...todos]
-    console.log('before delete', todos.length)
-    let index = todos.indexOf(taskToDelete)
-    console.log('taskToDelete', taskToDelete)
-    if(index>-1) {
-      copy.length = copy.length - 1
+    console.log(todos)
+    var index = -1
+    while(index<todos.length) {
+      index++
+      if(todos[index].id == id) {break}
     }
+    console.log(index,todos.length)
+    if(index<todos.length){
+      todos.splice(index,1)
+      todos = [...todos]
+    }
+    console.log(todos.length)
+    this.setState({ todos: todos })
 
-    todos = copy
-    console.log('indexOf', index)
-    // fetch()
+    let request = new Request('http://localhost:3000/api/terrific_thrasher2', {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: new Headers({'Content-Type': 'application/json'}),
+    })
+
+    let deleteString = 'http://localhost:3000/api/terrific_thrasher2'
+    deleteString += `/${id}`
+    console.log('prerequest')
+    fetch(deleteString, request)
   }
 
 }
