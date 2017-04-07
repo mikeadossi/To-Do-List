@@ -2,6 +2,27 @@
 ## Description
 
 Complete a to do list app deployed to heroku.
+
+## Run Code
+
+To run this project you'll need to run both the frontend and the backend simultaneously.
+
+To run the frontend navigate to the project directory and run the following commands.
+
+```
+$ npm install
+$ webpack
+$ webpack-dev-server
+```
+To run the backend open a different tab in your cli tool, navigate to the backend folder and run the following commands
+
+```
+$ npm install
+$ psql -f schema.sql
+$ npm start
+```
+Find the project running @ http://localhost:8080
+
 ## Context
 
 Create a full stack to do list web app and make tutorials about what your learn.
